@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Meteor
+  - Enemy
+  - PlayerBullet
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - PlayerBullet
+  - Enemy
+  - EnemyBullet
+  - Meteor
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 393861153
+    locked: 0
+  - name: Foreground
+    uniqueID: 2385336257
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1269732499
+    locked: 0
+  - name: Effects
+    uniqueID: 2000247977
+    locked: 0
+  m_RenderingLayers:
+  - Default
