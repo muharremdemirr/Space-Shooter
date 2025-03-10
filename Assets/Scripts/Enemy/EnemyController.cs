@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float maxX;
     [SerializeField] float yPos;
     [SerializeField] int damage;
+    [SerializeField] int score;
 
     public float speed;
     bool isFirst = true;
@@ -19,35 +20,32 @@ public class EnemyController : MonoBehaviour
         {
             isFirst = false;
             rndX = Random.Range(minX, maxX);
-            rndY = Random.Range(-13f, transform.position.y);
+            rndY = Random.Range(-13f, transform.position.y - 1f);
             target = new Vector3(rndX, rndY, 0);
         }
-
+        if (transform.position.y < -10f)
+        {
+            PlayerHealth.instance.Damage(damage);
+            transform.position = new Vector3(0, yPos, 0);
+        }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
     }
 
-    private void OnBecameInvisible()
-    {
-        transform.position = new Vector3(0, yPos, 0);
-        PlayerHealth.instance.Damage(damage);
-
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+            PlayerHealth.instance.Score(score);
             SoundManager.instance.EnemyExplosionSound();
-            GameManager.instance.DestroyEnemy(gameObject);
-            Destroy(gameObject);
+            transform.position = new Vector3(0, yPos, 0);
             Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.DestroyEnemy(gameObject);
-            Destroy(gameObject);
+            transform.position = new Vector3(0, yPos, 0);
             PlayerHealth.instance.Damage(damage);
         }
     }

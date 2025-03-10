@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,8 @@ public class UIManager : MonoBehaviour
     bool isPause;
 
     public GameObject GameOverPanel;
-    public GameObject finishPanel;
+
+    public TMP_Text Score;
 
     private void Awake()
     {
@@ -70,6 +72,8 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         GameOverPanel.SetActive(true);
+        string tmp = PlayerHealth.instance.GetScore().ToString();
+        Score.text = "Your Score: " + tmp;
     }
 
     public void RestartGame()
@@ -77,12 +81,6 @@ public class UIManager : MonoBehaviour
         SoundManager.instance.MouseClickSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
-    }
-
-    public void OpenFinishPanel()
-    {
-        finishPanel.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void ReturnMainMenu()

@@ -17,6 +17,7 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject);
         if (collision.gameObject.CompareTag("Meteor"))
         {
+            PlayerHealth.instance.Score(5);
             SoundManager.instance.MeteorExplosionSound();
             GameObject part = Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(collision.gameObject);

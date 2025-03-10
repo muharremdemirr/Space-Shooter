@@ -8,8 +8,10 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] int maxHealth;
     int currentHealth;
+    int score = 0;
 
     [SerializeField] TMP_Text HealthText;
+    [SerializeField] TMP_Text ScoreText;
 
     private void Awake()
     {
@@ -18,15 +20,20 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        UpdateHealth();
+        UpdateUIBar();
     }
 
+    public void Score(int score)
+    {
+        this.score += score;
+        UpdateUIBar();
+    }
 
     public void Damage(int damage)
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealth();
+        UpdateUIBar();
 
         if (currentHealth <= 0)
         {
@@ -37,8 +44,16 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-    void UpdateHealth()
+    void UpdateUIBar()
     {
         HealthText.text = currentHealth.ToString();
+        ScoreText.text = score.ToString();
+
+    }
+
+
+    public int GetScore()
+    {
+        return score;
     }
 }
